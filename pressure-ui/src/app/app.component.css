@@ -1,0 +1,7 @@
+.header-fill {
+  flex: 1;
+}
+
+mat-card {
+  margin-bottom: 10px;
+}

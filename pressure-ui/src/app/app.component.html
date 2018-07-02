@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  Pressure Sensor Viewer
+  <span class="header-fill"></span>
+  <mat-icon *ngIf="connected" (click)="disconnect()" title="Disconnect">bluetooth_connected</mat-icon>
+</mat-toolbar>
+<section>
+  <mat-card *ngIf="!connected">
+    <button *ngIf="!connecting" mat-raised-button color="primary" (click)="connect()">
+      <mat-icon>bluetooth</mat-icon>
+      Connect
+    </button>
+    <div *ngIf="connecting">
+      Connecting...
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </mat-card>
+  <mat-card *ngIf="connected">
+    <mat-card-title>Pressure Sensor Data</mat-card-title>
+    <mat-card-content>
+      <app-pressure-graph [pressureData]="data$"></app-pressure-graph>
+    </mat-card-content>
+  </mat-card>
+</section>

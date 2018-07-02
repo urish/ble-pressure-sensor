@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/pressure-ui",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

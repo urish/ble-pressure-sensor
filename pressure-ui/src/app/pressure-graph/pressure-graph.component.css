@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  position: relative;
+  font-family: Roboto, sans-serif;
+}
+
+.time-series-canvas {
+  width: 100%;
+  height: 280px;
+}
