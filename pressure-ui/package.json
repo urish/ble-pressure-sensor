@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
+    "nosleep.js": "^0.7.0",
     "rxjs": "^6.0.0",
     "smoothie": "^1.35.0",
     "zone.js": "^0.8.26"

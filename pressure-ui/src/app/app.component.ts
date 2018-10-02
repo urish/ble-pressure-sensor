@@ -3,6 +3,7 @@ import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { PressureSensorService, IPressureSample } from './pressure-sensor.service';
 import { MatSnackBar } from '@angular/material';
+import * as NoSleep from 'nosleep.js';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   connected = false;
   connecting = false;
   readonly data$: Observable<IPressureSample> = this.pressureSensor.readings$;
+  readonly nosleep = new NoSleep();
 
   private destroy$ = new Subject<void>();
 
@@ -21,6 +23,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.pressureSensor.connectionStatus$.pipe(takeUntil(this.destroy$)).subscribe((status) => {
       this.connected = status;
+      if (!status) {
+        this.nosleep.disable();
+      }
     });
   }
 
@@ -31,9 +36,11 @@ export class AppComponent implements OnInit, OnDestroy {
   async connect() {
     this.connecting = true;
     this.snackBar.dismiss();
+    this.nosleep.enable();
     try {
       await this.pressureSensor.connect();
     } catch (err) {
+      this.nosleep.disable();
       this.snackBar.open('Connection failed: ' + err.toString(), 'Dismiss');
     } finally {
       this.connecting = false;
