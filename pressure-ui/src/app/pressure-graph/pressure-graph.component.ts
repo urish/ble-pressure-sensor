@@ -12,8 +12,6 @@ import { Observable, Subject } from 'rxjs';
 import { SmoothieChart, TimeSeries } from 'smoothie';
 import { takeUntil } from 'rxjs/operators';
 
-const samplingFrequency = 20;
-
 @Component({
   selector: 'app-pressure-graph',
   templateUrl: './pressure-graph.component.html',
